@@ -1,0 +1,75 @@
+<?php if ($JobOrders) :?>
+	<div class="default-review pull-right" >
+		<div class="row">
+			<div class="col-sm-12">
+		
+			</div>
+			<div class="col-sm-12">
+				<h4 class="text-muted">Shipping Information</h4>
+				
+				<p> <strong>Name: 			</strong> <?php echo $ShippingInfo['shipping_name'];?>		</p>
+				<p> <strong>Address 1: 		</strong> <?php echo $ShippingInfo['shipping_address1'];?>	</p>
+				<?php if($ShippingInfo['shipping_address2']) {?>
+				<p> <strong>Address 2: 		</strong> <?php echo $ShippingInfo['shipping_address2'];?>	</p>
+				<?php } if($ShippingInfo['shipping_address3']) {?>
+				<p> <strong>Address 3: 		</strong> <?php echo $ShippingInfo['shipping_address3'];?>	</p>
+				<?php }?>
+				<p> <strong>City: 			</strong> <?php echo $ShippingInfo['shipping_city'];?>		</p>
+				<p> <strong>State: 			</strong> <?php echo $ShippingInfo['shipping_state'];?>		</p>
+				<p> <strong>Country: 		</strong> <?php echo $ShippingInfo['shipping_country'];?>	</p>
+				<p> <strong>Shipping Total: </strong> <?php echo $ShippingInfo['shipping_total'];?>		</p>
+			</div>
+		</div>
+		<hr>
+	</div>
+
+	<table class="table" border='0'>
+		<thead>
+			<tr>
+				<th width="20%">Product</th>
+				<th width="20%"></th>
+				<th><center>Quantity</center></th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($JobOrders as $JobOrder): ?>	
+				<tr>
+					<td>
+						<?php $path = explode("/",$JobOrder['product_image'],4); ?>
+						<div class="">
+							<img src="<?php echo $this->basePath().'/'.$path[3]; ?>" id="image_male" class="img-responsive">
+						</div>
+					</td>
+					<td align="center">
+						<p><?php echo $JobOrder['product_name']; ?></p>
+						<p class="text-muted"><?php echo $JobOrder['product_desc']; ?></p>
+						<p><?php echo $JobOrder['unit_price']; ?></p>
+					</td>
+					<td align="center"><?php echo $JobOrder['qty']; ?></td>
+					<td><?php echo $JobOrder['total_price'] ;?></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+	
+	<table class="table table-total">
+		<tr>
+			<td colspan="4" align="right" style="border: none;">Subtotal :</td>
+			<td align="right" style="border: none;">$ <?php echo number_format($JobOrder['sub_total'],2); ?></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="right" style="border: none;">Shipping :</td>
+			<td align="right" style="border: none;">$ <?php echo number_format($JobOrder['shipping_total']); ?></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="right" style="border: none;">Grand Total :</td>
+			<td align="right" style="border: none;">$ <?php echo number_format($JobOrder['total_amount'],2); ?></td>
+		</tr>
+		<tr>
+			<td colspan="5" align="right" style="border: none;"><a href="<?php echo  $this->url('payment', array('action' => 'success'));?>" class="btn btn-success">Checkout</a></td>
+		</tr>
+	</table>	
+<?php else:  ?>
+<h3>Please Checkout your Order first</h3>
+<?php endif; ?>

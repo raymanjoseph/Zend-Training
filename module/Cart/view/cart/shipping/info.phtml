@@ -1,0 +1,52 @@
+<?php 
+
+$openDiv 	= '<div class="form-group ">';
+$closeDiv 	= '</div>';
+echo "<div class='signup-container'>";
+$form->setAttributes(array(
+	    'action' => $this->url('shipping', array('action' => 'info')),
+	    'class'  => 'form-horizontal'
+		));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $openDiv;
+echo $this->formRow($form->get('shipping_name')->setAttributes(array('class' => 'form-control col-sm-12')));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('shipping_address1')->setAttributes(array('class' => 'form-control col-sm-12')));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('shipping_address2')->setAttributes(array('class' => 'form-control col-sm-12')));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('shipping_address3')->setAttributes(array('class' => 'form-control col-sm-12')));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('shipping_city')->setAttributes(array('class' => 'form-control col-sm-12')));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('shipping_state')->setAttributes(array('class' => 'form-control col-sm-12')));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('shipping_country')->setAttributes(array('class' => 'form-control col-sm-12')));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('shipping_mehod'));
+echo $closeDiv;
+
+echo $openDiv;
+echo $this->formRow($form->get('submit')->setAttributes(array('class' => 'btn btn-success')));
+echo $closeDiv;
+
+echo $this->form()->closeTag();
+echo '</div>';
+?>
+

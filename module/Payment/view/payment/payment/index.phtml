@@ -1,0 +1,52 @@
+<?php if (isset($CheckCustomerId) && !empty($CheckCustomerId)): ?>
+	<table class="table" border='0'>
+		<thead>
+			<tr>
+				<th width="20%">Product</th>
+				<th width="20%"></th>
+				<th><center>Quantity</center></th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($cart_items as $cart): ?>	
+				
+				<tr>
+					<td>
+						<?php $path = explode("/",$cart['product_image'],4); ?>
+						<div class="">
+							<img src="<?php echo $this->basePath().'/'.$path[3]; ?>" id="image_male" class="img-responsive">
+						</div>
+					</td>
+					<td align="center">
+						<p><?php echo $cart['product_name']; ?></p>
+						<p class="text-muted"><?php echo $cart['product_desc']; ?></p>
+						<p><?php echo $cart['unit_price']; ?></p>
+					</td>
+					<td align="center"><?php echo $cart['qty']; ?></td>
+					<td><?php echo $cart['total_price'] ;?></td>
+				</tr>
+
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+	<table class="table table-total">
+		<tr>
+			<td colspan="4" align="right" style="border: none;">Subtotal :</td>
+			<td align="right" style="border: none;">$ <?php echo number_format($cart['sub_total'],2); ?></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="right" style="border: none;">Shipping :</td>
+			<td align="right" style="border: none;">$ <?php echo number_format($cart['shipping_total']); ?></td>
+		</tr>
+		<tr>
+			<td colspan="4" align="right" style="border: none;">Grand Total :</td>
+			<td align="right" style="border: none;">$ <?php echo number_format($cart['total_amount'],2); ?></td>
+		</tr>
+		<tr>
+			<td colspan="5" align="right" style="border: none;"><a href="<?php echo  $this->url('payment', array('action' => 'checkout'));?>" class="btn btn-success">Continue</a></td>
+		</tr>
+	</table>	
+<?php else:  ?>
+<h3>Please Checkout your cart first</h3>
+<?php endif; ?>
